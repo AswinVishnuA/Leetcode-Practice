@@ -14,14 +14,14 @@ class Solution:
             if idx>=len(cand) or cand[idx]>tr:
                 return
             
-            # for i in range(idx,len(can)):
-            #     temp.append(can[i])
-            #     solve(can,i,tr-can[i],temp)
-            #     temp.pop()
-            solve(idx+1,tr,temp)
-            temp.append(cand[idx])
-            solve(idx,tr-cand[idx],temp)
-            temp.pop()
+            for i in range(idx,len(cand)):
+                temp.append(cand[i])
+                solve(i,tr-cand[i],temp)
+                temp.pop()
+            # solve(idx+1,tr,temp)
+            # temp.append(cand[idx])
+            # solve(idx,tr-cand[idx],temp)
+            # temp.pop()
         solve(0,tar,[])
         return ans
     
