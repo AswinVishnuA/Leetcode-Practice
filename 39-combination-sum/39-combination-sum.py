@@ -7,7 +7,7 @@ class Solution:
             
             
             if tr==0:
-                ans.append(temp.copy())
+                ans.append(temp)
                 return
             
             
@@ -15,9 +15,7 @@ class Solution:
                 return
             
             for i in range(idx,len(cand)):
-                temp.append(cand[i])
-                solve(i,tr-cand[i],temp)
-                temp.pop()
+                solve(i,tr-cand[i],temp+[cand[i]])
             # solve(idx+1,tr,temp)
             # temp.append(cand[idx])
             # solve(idx,tr-cand[idx],temp)
