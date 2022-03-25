@@ -7,7 +7,7 @@ class Solution:
             if idx==len(nums):
                 return 0
             
-            if (csum,idx) in dp.keys():
+            if (csum,idx) in dp:
                 return dp[(csum,idx)]
             
             dp[(csum,idx)]=solve(idx+1,csum-nums[idx])+solve(idx+1,csum+nums[idx])
