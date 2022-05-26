@@ -1,12 +1,15 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        d={i:0 for i in s}
+        d=dict()
         
         for i in s:
-            d[i]+=1
+            if i not in d:
+                d[i]=1
+            else:
+                d[i]+=1
             
         for j in t:      
-            if j not in d or d[j]==0:
+            if j not in d:
                 return False
             d[j]-=1
         
