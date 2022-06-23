@@ -3,13 +3,13 @@ class Solution:
         
         s=set()
         def dfs(a,t):
-            if a:
+            if a not in s:
                 s.add(a)
                                         
             for i in range(len(t)):
                 dfs(a+t[i],t[:i]+t[i+1:])
         
         dfs("",tiles)
-        return len(s)
+        return len(s)-1
                 
         
