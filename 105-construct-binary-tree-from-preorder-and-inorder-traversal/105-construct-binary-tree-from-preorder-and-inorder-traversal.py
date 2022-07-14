@@ -20,24 +20,30 @@ class Solution:
         
         '''
         n=len(preorder)
-        idx=[0]
-        def solve(io,po,idx):
-            if len(io)==0 or idx[0]==n:
+        d={}
+        for i,num in enumerate(inorder):
+            d[num]=i
+        global idx
+        idx=0
+        def solve(io,po):
+            # print(io)
+            global idx
+            if len(io)==0 or idx==n:
                 return None
             
-            root= TreeNode(po[idx[0]])
+            root= TreeNode(po[idx])
             
             for i in range(len(io)):
-                if io[i]==po[idx[0]]:
+                if io[i]==po[idx]:
                     break
             # print(idx[0])
-            idx[0]+=1
-            root.left=solve(io[:i],po,idx)
-            root.right=solve(io[i+1:],po,idx)
+            idx+=1
+            root.left=solve(io[:i],po)
+            root.right=solve(io[i+1:],po)
             
             return root
             
         
         
-        return solve(inorder,preorder,idx)
+        return solve(inorder,preorder)
         
