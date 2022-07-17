@@ -14,7 +14,7 @@ class Solution:
                 if K==0:
                     dp[N][K]=1
                 else:
-                    if K-N<0:#min(K,N)==K:
+                    if min(K,N)==K and K!=N:
                         dp[N][K]=(dp[N][K-1]+dp[N-1][K])%(10**9 +7)
                     else:
                         dp[N][K]=(dp[N][K-1]+dp[N-1][K]-dp[N-1][K-N]) %(10**9 +7)
