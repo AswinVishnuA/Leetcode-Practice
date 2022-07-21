@@ -14,19 +14,23 @@ class Solution:
             temp=temp.next
             i+=1
         
-        temp2=temp
-        while temp2 and i<=right:
-            temp2=temp2.next
-            i+=1
+#         temp2=temp
+#         while temp2 and i<=right:
+#             temp2=temp2.next
+#             i+=1
         
         i=left
-        prev2=temp2
+        prev2=None
+        temp2=temp
         while temp and i<=right:
             nextn=temp.next
             temp.next=prev2
             prev2=temp
             temp=nextn
             i+=1
+        
+        temp2.next=temp
+
         if prev:
             prev.next=prev2
             return head
