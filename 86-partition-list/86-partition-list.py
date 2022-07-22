@@ -8,30 +8,40 @@ class Solution:
         
         if head==None:
             return None
-        less=[]
-        greater=[]
+        
+        prevl=None
+        prevg=None
+        lhead=None
+        ghead=None
         cur=head
         while cur:
             if cur.val<x:
-                less.append(cur)
+                if prevl==None:
+                    prevl=cur
+                    lhead=prevl
+                else:
+                    prevl.next=cur
+                    prevl=cur
             else:
-                greater.append(cur)
+                if prevg==None:
+                    prevg=cur
+                    ghead=prevg
+                else:
+                    prevg.next=cur
+                    prevg=cur
             cur=cur.next
         
-        for i in range(len(less)-1):
-            less[i].next=less[i+1]
+        if lhead and ghead:
+            prevl.next=ghead
+            prevg.next=None
+            return lhead
         
-        for i in range(len(greater)-1):
-            greater[i].next=greater[i+1]
+        if lhead:
+            return lhead
         
-        if len(greater):
-            greater[-1].next=None
+        if ghead:
+            return ghead
         
-        if len(less) and len(greater):
-            less[-1].next=greater[0]
-            return less[0]
-        if len(less)==0:
-            return greater[0]
-        else:
-            less[-1].next=None
-            return less[0]
+        
+            
+        
