@@ -25,9 +25,9 @@ class Solution:
                 print(high,low)
             row+=1
         
-        if row==m:
-            return False
+        
+        return False
         
         
-        return mat[row][low]==target
+        
         
