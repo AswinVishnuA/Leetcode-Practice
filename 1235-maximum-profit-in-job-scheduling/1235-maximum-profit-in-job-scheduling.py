@@ -8,9 +8,9 @@ class Solution:
         
         pairs.sort()
         
-#         starts=[]
-#         for i in range(n):
-#             starts.append(pairs[i][0])    
+        starts=[]
+        for i in range(n):
+            starts.append(pairs[i][0])    
             
             
         
@@ -22,13 +22,22 @@ class Solution:
             
             ans=solve(i+1)
             
-            for j in range(i+1,n+1):
-                if j==n or pairs[i][1]<=pairs[j][0]:
-                    ans=max(ans,pairs[i][-1]+solve(j))
-                    break
-                    
-            
-            return ans
+#             for j in range(i+1,n+1):
+#                 if j==n or pairs[i][1]<=pairs[j][0]:
+#                     ans=max(ans,pairs[i][-1]+solve(j))
+#                     break
+            low=i+1
+            high=n
+            while low<high:
+                
+                mid= (low+high)//2
+                
+                if mid==n or pairs[i][1]<=pairs[mid][0]:
+                    high=mid
+                else:
+                    low=mid+1
+            # print(high,low)
+            return max(ans,pairs[i][2]+solve(high))
                 
         
         
