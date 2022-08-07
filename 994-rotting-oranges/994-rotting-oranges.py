@@ -25,8 +25,8 @@ class Solution:
         if empty+rot==m*n:
             return 0
         
-        if empty+good==m*n:
-            return -1
+#         if empty+good==m*n:
+#             return -1
         
         vis=set()
         
