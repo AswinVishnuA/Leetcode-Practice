@@ -39,7 +39,28 @@ class Solution:
         
         for i in range(1,n):
             
-            idx = bisect_left(dp,nums[i])
+            # idx = bisect_left(dp,nums[i])
+            
+            low=0
+            high=len(dp)-1
+            
+            while low<high:
+                
+                mid=(low+high)//2
+                
+                if dp[mid]>=nums[i]:
+                    high=mid
+                else:
+                    low=mid+1
+            
+            
+            if nums[i]<=dp[high]:
+                idx=high
+            else:
+                idx=high+1
+                
+            
+            # print(idx)
             
             if idx==len(dp):
                 dp.append(nums[i])
