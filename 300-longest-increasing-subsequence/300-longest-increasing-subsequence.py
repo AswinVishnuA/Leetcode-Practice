@@ -39,18 +39,12 @@ class Solution:
         
         for i in range(1,n):
             
-            idx = bisect_right(dp,nums[i])
+            idx = bisect_left(dp,nums[i])
             
             if idx==len(dp):
-                if nums[i]==dp[idx-1]:
-                    continue
-                else:
-                    dp.append(nums[i])
+                dp.append(nums[i])
             else:
-                if nums[i]==dp[idx-1]:
-                    continue
-                else:
-                    dp[idx]=nums[i]
+                dp[idx]=nums[i]
         
         return len(dp)
                 
