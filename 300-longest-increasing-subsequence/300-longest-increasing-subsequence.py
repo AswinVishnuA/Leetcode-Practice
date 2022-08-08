@@ -1,28 +1,29 @@
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
         
-#         n=len(nums)
-#         # @lru_cache(None)
-#         def solve(n):
-#             if n==0 or n==1:
-#                 return n
-            
-#             ans =solve(n-1)
-            
-#             for i in range(n-1):
-                
-#                 if nums[i]<nums[n-1]:
-#                     ans=max(ans,1+solve(i+1))
-            
-#             print(n,"____")
-#             print(ans)
-            
-#             return ans        
-        
-#         return solve(n)
-
-
         n=len(nums)
+        
+#         dp=[[-1 for i in range(20002)] for _ in range(2501)]
+        
+#         def solve(i,prev=-10001):
+#             # print(i,prev)
+#             if i==n:
+#                 return 0
+            
+#             if dp[i][prev+10001]!=-1:
+#                 return dp[i][prev+10001]
+            
+#             dp[i][prev+10001]=solve(i+1,prev)
+            
+#             if nums[i]>prev:
+#                 dp[i][prev+10001]=max(dp[i][prev+10001],1+solve(i+1,nums[i]))
+            
+            
+#             return dp[i][prev+10001]        
+        
+#         return solve(0)
+
+
         dp=[1 for i in range(n)]
             
         
