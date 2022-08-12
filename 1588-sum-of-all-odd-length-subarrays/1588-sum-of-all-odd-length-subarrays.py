@@ -3,21 +3,33 @@ class Solution:
         
         n=len(arr)
         
-        
-        prefixs=[arr[0]]
-        for i in range(1,n):
-            prefixs.append(prefixs[-1]+arr[i])
-        
-        print(prefixs)
-        
         sumval=0
+        
         for i in range(n):
-            for j in range(i,n):
-                if (j-i+1)%2==1:
-                    sumval+=(prefixs[j]-prefixs[i]+arr[i])
+            sumval+= (((i+1)*(n-i) + 1)//2)*arr[i]
+        
         
         return sumval
             
+        """
+        0,1,2,3...i,i+1,i+2...n
+        
+        0=k
+        1=ceil((1-0)/2)+ ceil(n-1/2) 
+        2=ceil(2/2)+ ceil(n-1/2)
+        
+        0 1 2
+        3 4 5
+        
+        
+        
+        
+        n
+        K= ceil(n/2) 
+        even = n- odd
+        
+        
+        """
             
         
             
