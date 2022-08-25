@@ -6,7 +6,7 @@ class Solution:
         
         for c in rc:
             
-            if c not in mc or mc[c]<rc[c]:
+            if mc[c]<rc[c]:
                 return False
             
         return True
