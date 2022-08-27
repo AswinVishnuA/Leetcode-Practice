@@ -4,33 +4,33 @@ class Solution:
         adj=defaultdict(list)
         
         for a,b in pr:
-            adj[a].append(b)
+            adj[b].append(a)
         
-        dp=defaultdict(list)
-        vis=defaultdict(int)
-        flag=[True]
+        degree=[0 for i in range(nc)]
+        
+        for v in adj:
+            for nbr in adj[v]:
+                degree[nbr]+=1
         ans=[]
-        def dfs(cur):
-            
-            if vis[cur]==-1:
-                return False
-
-            if vis[cur]==0:
-                vis[cur]=-1
-
-                for ns in adj[cur]:
-                    if not dfs(ns):
-                        return False
-
-                ans.append(cur)
-                vis[cur]=1
-
-            return True
         
         for i in range(nc):
-            if i not in vis:
-                if not dfs(i):
-                    return []
+            
+            for j in range(nc+1):
+                
+                if j==nc:
+                    break
+                
+                if degree[j]==0:
+                    break
+            
+            if j==nc:
+                return []
+            
+            degree[j]-=1
+            ans.append(j)
+            for nbr in adj[j]:
+                degree[nbr]-=1
+            
         
         return ans
                     
