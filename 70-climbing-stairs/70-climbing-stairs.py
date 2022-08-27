@@ -1,20 +1,16 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
         
-        if n==0:
-            return 0
-        
-        
-        
-        prev=0
-        ans=1
-        for i in range(n):
-            temp=ans
-            ans+=prev
-            prev=temp
-        
-        return ans
-        
+        @lru_cache(None)
+        def solve(n):
+            
+            if n==0:
+                return 1
+            if n<0:
+                return 0
+            
+            return solve(n-1)+solve(n-2)
+        return solve(n)
         
 
         '''
