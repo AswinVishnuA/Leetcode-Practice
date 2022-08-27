@@ -1,16 +1,12 @@
 class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
         
-        length=len(cost)
-        
-        @lru_cache(None)
-        def solve(n):
-            if n==1 or n==0:
-                return 0
-            
-            
-            return min(cost[n-1]+solve(n-1),cost[n-2]+solve(n-2))
+        n=len(cost)
+        dp=[0 for i in range(n+1)]
         
         
-        return solve(length)
+        for i in range(2,n+1):
+            dp[i]=min(dp[i-1]+cost[i-1],dp[i-2]+cost[i-2])
+        
+        return dp[n]
         
