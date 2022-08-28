@@ -2,37 +2,24 @@ class Solution:
     def longestPalindrome(self, s: str) -> str:
         
         n=len(s)
-        ans=1
-        leftIdx=0
-        rightIdx=0
+        
+        dp=[[False]*n for _ in range(n)]
+        
         for i in range(n):
-            
-            left=i
-            right=i+1
-            evenLen=0
-            while left>=0 and right<n and s[left]==s[right]:
-                evenLen+=2
-                left-=1
-                right+=1
-            if evenLen>ans:
-                ans=evenLen
-                leftIdx=left+1
-                rightIdx=right-1
-            
-            left=i-1
-            right=i+1
-            oddLen=1
-            while left>=0 and right<n and s[left]==s[right]:
-                oddLen+=2
-                left-=1
-                right+=1
-                
-            if oddLen>ans:
-                ans=oddLen
-                leftIdx=left+1
-                rightIdx=right-1
-            
-            
-        return s[leftIdx:rightIdx+1]
+            dp[i][i]=True
+        
+        longest=s[0]
+        curMax=1
+        for j in range(n):
+            for i in range(j):
+                if s[i]==s[j]:
+                    dp[i][j]= (j-i==1) or dp[i+1][j-1]
+                    
+                    if dp[i][j] and j-i+1>curMax:
+                        curMax=j-i+1
+                        longest=s[i:j+1]
+        return longest
+                    
+                    
                 
         
