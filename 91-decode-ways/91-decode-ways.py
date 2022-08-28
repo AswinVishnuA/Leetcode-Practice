@@ -2,7 +2,8 @@ class Solution:
     def numDecodings(self, s: str) -> int:
         
         
-        @lru_cache(None)
+        dp=[-1 for i in range(len(s)+1)]
+        
         def solve(i):
             
             if i == len(s):
@@ -11,12 +12,15 @@ class Solution:
             if s[i]=='0':
                 return 0
             
-            ans=solve(i+1)
+            if dp[i]!=-1:
+                return dp[i]
+            
+            dp[i]=solve(i+1)
             
             if (i!=len(s)-1 and s[i]=='1') or ( i!=len(s)-1 and s[i]=='2' and s[i+1] in {"0","1","2","3","4","5","6"}):
-                ans+=solve(i+2)
+                dp[i]+=solve(i+2)
             
-            return ans
+            return dp[i]
         
         return solve(0)
             
