@@ -5,26 +5,24 @@ class Solution:
         
         trueSet=set()
         
-        dp=[[-1]*(len(s)+1) for _ in range(len(s)+1)]
+        n=len(s)
         
-        def solve(i,j):
-            
-            
-            if s[i:j]=="":
-                return True
-            
-            # print(i,j)
-            if dp[i][j]!=-1:
-                return dp[i][j]
-            
-            for k in range(i+1,j+1):
-                if s[i:k] in wordSet and  solve(k,j):
-                    dp[i][j]= 1
-                    return True
-            
-            dp[i][j]= 0
-            
-            return False
+        dp=[0 for i in range(n+1)]
+        
+        dp[0]=1
+        
+        
+        for i in range(n+1):
+            for j  in range(i):
+                # print(i,j,s[j:i])
+                if dp[j] and s[j:i] in wordSet:
+                    dp[i]=1
+                    
+        
+        # print(dp)
+        return dp[n]
+                    
+                
         
         # print(dp)
         return solve(0,len(s))
