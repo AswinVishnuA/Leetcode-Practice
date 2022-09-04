@@ -18,7 +18,6 @@ class Solution:
         dfs(root,0,0)
         
         arr.sort()
-        # print(arr)
         ans=[]
         cur=[arr[0][-1]]
         n=len(arr)
