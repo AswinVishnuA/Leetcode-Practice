@@ -8,28 +8,20 @@ class Solution:
         
         n=len(nums)
         
-        dp=[[-1]*n for i in range((sumVal//2)+1) ]
+        tar=sumVal//2
         
-        def solve(i,tar):
-            
-            if i == n:
-                return tar==0
-            
-            if tar==0:
-                return True
-            
-            if dp[tar][i]!=-1:
-                return dp[tar][i]
-            
-            if nums[i]>tar:
-                dp[tar][i]= solve(i+1,tar)
-                return dp[tar][i]
-            
-            dp[tar][i]= solve(i+1,tar-nums[i]) or solve(i+1,tar)
-            
-            return dp[tar][i]
-            
-            
+        dp=[[0]*(n+1) for i in range(tar+1) ]
         
-        return solve(0,sumVal//2)
+        for i in range(n+1):
+            dp[0][i]=1
         
+        
+        for i in range(1,n+1):
+            for j in range(1,tar+1):
+                
+                if nums[i-1]>j:
+                    dp[j][i]=dp[j][i-1]
+                else:
+                    dp[j][i]=max(dp[j-nums[i-1]][i-1],dp[j][i-1])
+        
+        return dp[tar][n]
