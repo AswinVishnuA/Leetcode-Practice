@@ -1,17 +1,17 @@
 class Solution:
     def findTargetSumWays(self, nums: List[int], tar: int) -> int:
-        dp=dict()
-        def solve(idx,csum):
-            if csum==tar and idx==len(nums):
+        
+        
+        @lru_cache(None)
+        def solve(i,tar):
+            
+            if i==0 and tar==0:
                 return 1
-            if idx==len(nums):
+            if i==0:
                 return 0
             
-            if (csum,idx) in dp:
-                return dp[(csum,idx)]
-            
-            dp[(csum,idx)]=solve(idx+1,csum-nums[idx])+solve(idx+1,csum+nums[idx])
-            return dp[(csum,idx)]
-                
-        return solve(0,0)      
+            return solve(i-1,tar-nums[i-1])+solve(i-1,tar+nums[i-1])
+        
+        return solve(len(nums),tar)                 
+                 
         
