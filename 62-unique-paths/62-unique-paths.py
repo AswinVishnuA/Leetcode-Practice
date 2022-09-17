@@ -16,15 +16,15 @@ class Solution:
         
 #         return solve(0,0)
         
-        dp=[[0 for i in range(n)] for _ in range(m)]
+        dp=[0 for i in range(n)]
         
         
         
         for i in range(m):
             for j in range(n):
                 if i==0 or j==0:
-                    dp[i][j]=1
+                    dp[j]=1
                     continue
-                dp[i][j]=dp[i][j-1]+dp[i-1][j]
+                dp[j]=dp[j-1]+dp[j]
         
-        return dp[m-1][n-1]
+        return dp[n-1]
