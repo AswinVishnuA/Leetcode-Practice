@@ -1,31 +1,17 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        
-        
         n=len(prices)
+        dp=[[0,0] for i in range(n)]
         
-        dp=[[-1,-1] for _ in range(n+1)]
+        dp[0][0]=0
+        dp[0][1]=-prices[0]
         
-        
-        def solve(i,toSell):
+        for i in range(1,n):
             
-            if i>=n:
-                return 0
-            
-            if dp[i][toSell]!=-1:
-                return dp[i][toSell]
-            
-            if toSell:
-                
-                sell=solve(i+2,False)+prices[i]
-                noSell=solve(i+1,True)
-                dp[i][toSell]= max(sell,noSell)
-                return dp[i][toSell]
+            dp[i][0]=max(dp[i-1][0],dp[i-1][1]+prices[i])
+            if i>=2:
+                dp[i][1]=max(dp[i-1][1],dp[i-2][0]-prices[i])
             else:
-                buy=solve(i+1,True)-prices[i]
-                noBuy=solve(i+1,False)
-                dp[i][toSell]=max(buy,noBuy)
-                return dp[i][toSell]
-            
-        return solve(0,False)
+                dp[i][1]=max(dp[i-1][1],-prices[i])
         
+        return dp[n-1][0]
