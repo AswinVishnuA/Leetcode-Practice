@@ -24,19 +24,19 @@ class Solution:
         # print("1")
         sumval=(tar+total)//2
         
-        dp=[[0]*(sumval+1) for i in range(n+1)]
+        dp=[0]*(sumval+1)
         
-        for i in range(n+1):
-            dp[i][0]=1
+        dp[0]=1
         
         for i in range(1,n+1):
+            preRow=dp.copy()
             for j in range(sumval+1):
                 if nums[i-1]<=j:
-                    dp[i][j]=dp[i-1][j]+dp[i-1][j-nums[i-1]]
+                    dp[j]=preRow[j]+preRow[j-nums[i-1]]
                 else:
-                    dp[i][j]=dp[i-1][j]
+                    dp[j]=preRow[j]
         
-        return dp[n][sumval]
+        return dp[sumval]
                 
                 
     
