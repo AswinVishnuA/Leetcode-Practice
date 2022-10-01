@@ -40,7 +40,7 @@ class Solution:
             
         # print(dp)    
         
-        return int(dp[n])
+        return dp[n]
             
             
         
