@@ -2,12 +2,12 @@ from sortedcontainers import SortedList
 class TimeMap:
 
     def __init__(self):
-        self.d=defaultdict(SortedList)
+        self.d=defaultdict(list)
         
         
 
     def set(self, key: str, value: str, timestamp: int) -> None:
-        self.d[key].add((timestamp,value))
+        self.d[key].append((timestamp,value))
         
         
 
