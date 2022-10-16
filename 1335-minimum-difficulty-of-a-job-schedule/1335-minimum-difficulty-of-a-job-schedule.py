@@ -4,7 +4,7 @@ class Solution:
         n=len(job)
         
         @lru_cache(None)
-        def solve(n,d):
+        def solve(n,d,curMax):
             # print(n,d)
             if n==0 :
                 
@@ -18,17 +18,16 @@ class Solution:
             if d==0:
                 return float(inf)
             
-            ans=float(inf)
-            curmax=float(-inf)
-            for i in range(n-1,-1,-1):
-                curmax=max(job[i],curmax)
-                
-                ans=min(ans,curmax+solve(i,d-1))
+            curMax=max(job[n-1],curMax)
+            include=curMax+solve(n-1,d-1,-1)
+            notinclude=solve(n-1,d,curMax)
             
-            # print(n,d,ans)
+            
+            ans= min(include,notinclude)
+            # print(n,d,curMax,ans)
             return ans
         
-        ans=solve(n,d)
+        ans=solve(n,d,-1)
         return ans if ans!=float(inf) else -1
                 
         
